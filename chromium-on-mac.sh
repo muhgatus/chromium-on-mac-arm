@@ -7,8 +7,8 @@
 #
 SCRIPT_VERSION="1.32"
 
-CHROMIUM_URL="http://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?path=Mac"
-CHROMIUM_URL2="http://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac"
+CHROMIUM_URL="http://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html?path=Mac_Arm"
+CHROMIUM_URL2="http://commondatastorage.googleapis.com/chromium-browser-snapshots/Mac_Arm"
 CHROMIUM_INSTALL_PATH="/Applications/"
 CHROMIUM_CURRENT_VERSION_FILE="$CHROMIUM_INSTALL_PATH/Chromium.app/Contents/Info.plist"
 #CHROMIUM_CURRENT_VERSION=`defaults read /Applications/Chromium.app/Contents/Info SVNRevision`
@@ -43,6 +43,8 @@ if [ "$CHROMIUM_CURRENT_VERSION" == "" ] || [ $CHROMIUM_CURRENT_VERSION -lt $CHR
 	cp -R chrome-mac/Chromium.app $CHROMIUM_INSTALL_PATH
 	rm -Rf /tmp/chrome-mac*
 	echo "Chromium version $CHROMIUM_LATEST_VERSION installed"
+        cd $CHROMIUM_INSTALL_PATH
+        xattr -rc Chromium.app
 else
 	echo "No update available, you already have the latest version"
 fi
